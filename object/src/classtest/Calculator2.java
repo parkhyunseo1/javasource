@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package classtest;
 
 public class Calculator2 {
@@ -22,3 +23,29 @@ public class Calculator2 {
         println("실행결과 : " + avg(7, 10));
     }
 }
+=======
+package classtest;
+
+public class Calculator2 {
+    // 같은 클래스내부에서 다른 메소드 호출 가능
+    // 이름만 사용하면 됨
+
+    int plus(int x, int y) {
+        return x + y;
+    }
+
+    double avg(int x, int y){
+        double sum = plus(x, y):
+        return sum / 2;
+
+    }
+
+    void println(String message) {
+        System.out.println(message);
+    }
+
+    void execute() {
+        println("실행결과 : " + avg(7, 10));
+    }
+}
+>>>>>>> ce0a999417578a8be48c26f5566072d556a7963e
