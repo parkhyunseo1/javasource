@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 public class SelectEx2 {
     public static void main(String[] args) {
         // SelectEx ==> try -with-resources 형태로 변경
-        try () {
-            
+        try {
+
         } catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
         Connection con = null;
         PreparedStatement psmt = null;
@@ -30,7 +30,7 @@ public class SelectEx2 {
             con = DriverManager.getConnection(url, user, password);
 
             // 4. connection 을 통해서 실행하고자 하는 sql 구문 전송
-            String sql = "SELECT * FROM emp ";
+            String sql = "SELECT * FROM emp WHERE empno = 7369";
 
             psmt = con.prepareStatement(sql);
 
