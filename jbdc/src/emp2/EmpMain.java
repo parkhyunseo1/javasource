@@ -1,5 +1,6 @@
 package emp2;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class EmpMain {
@@ -8,7 +9,7 @@ public class EmpMain {
         Scanner sc = new Scanner(System.in);
         boolean run = true;
 
-        EmpConsoleUtil utill = new EmpConsoleUtil();
+        EmpConsoleUtil util = new EmpConsoleUtil();
         EmpService service = new EmpService(new EmpDAO());
 
         while (run) {
@@ -27,25 +28,48 @@ public class EmpMain {
 
             switch (menu) {
                 case 1:
-                    EmpDTO dto = utill.insertEmp(sc);
+                    EmpDTO dto = util.insertEmp(sc);
                     boolean result = service.addEmp(dto);
                     System.out.println(result ? "입력성공" : "입력실패");
                     break;
 
                 case 2:
+                    // getEmpNo() 호출
+                    int empno = util.getEmpNo(sc);
+                    // service 의 getRow() 호출
+                    dto = service.getRow(empno);
+                    // printEmp()호출
+                    util.printEmp(dto);
 
                     break;
 
                 case 3:
+                    // service의 getRows()호출
+                    List<EmpDTO> list = service.getRows();
 
+                    // util의 printEmp() 호출
+                    util.printListEmp(list);
                     break;
 
                 case 4:
-
+                    // updateInfo() 호출
+                    dto = util.updateInfo(sc);
+                    // updateEmpInfo() 호출 후 결과 받아서 결과 출력
+                    // System.out.println(service.updateEmpInfo(dto) ? "수정성공" : "수정실패");
+                    if (service.updateEmpInfo(dto)) {
+                        dto = service.getRow(dto.getEmpno());
+                        util.printEmp(dto);
+                    } else {
+                        System.out.println("수정실패 ");
+                    }
                     break;
 
                 case 5:
-
+                    // deleteEmpNo 호출 후 empno 받기
+                    int deleteEmpNo = util.deleteEmpNo(sc);
+                    // service deleteEmpInfo() 호출 후 결과 출력
+                    service.deleteEmpInfo(deleteEmpNo);
+                    System.out.println(service.deleteEmpInfo(deleteEmpNo) ? "삭제성공" : "삭제실패");
                     break;
 
                 case 6:

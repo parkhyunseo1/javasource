@@ -30,7 +30,7 @@ public class SelectEx2 {
             con = DriverManager.getConnection(url, user, password);
 
             // 4. connection 을 통해서 실행하고자 하는 sql 구문 전송
-            String sql = "SELECT * FROM emp WHERE empno = 7369";
+            String sql = "SELECT * FROM emp";
 
             psmt = con.prepareStatement(sql);
 
